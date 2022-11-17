@@ -1,0 +1,24 @@
+import java.util.*;
+    
+    public class Main{
+    
+    public static void main(String[] args) {
+      Scanner sc = new Scanner (System.in);
+      int n = sc.nextInt();
+      int count = 0;
+      int temp = n;
+      while(temp/10 != 0){
+        temp = temp/10;
+        count++;
+      }
+      count = (int)Math.pow(10, count);
+      while(count != 0){ //don't use "n != 0" cause last
+                        //digit of that actual number 
+                        //could be 0.
+        int digit = n/count;
+        System.out.println(digit);
+        n %= count;
+        count /= 10;
+      }
+     }
+    }
