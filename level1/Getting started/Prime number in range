@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+  
+      int low = scn.nextInt();
+       int high = scn.nextInt();
+       
+        for(int j = low; j <= high; j++){
+            boolean flag = true;
+            for(int i = 2; i * i <= j; i++){
+                if(j%i == 0){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag == true){
+                System.out.println(j);
+            }
+        }
+    }
+}
