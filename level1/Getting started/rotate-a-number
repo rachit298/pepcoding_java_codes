@@ -1,0 +1,38 @@
+import java.util.*;
+   
+   public class Main{
+   
+   public static void main(String[] args) {
+     
+     Scanner sc = new Scanner (System.in);
+     int n = sc.nextInt();
+     int k = sc.nextInt();
+     int temp = n;
+     int count = 0;
+     while(temp != 0){
+         temp /= 10;
+         count++;
+     }
+     k %= count;
+     if(k < 0){
+         k += count;
+     }
+     int mul = 1;
+     int div = 1;
+     //we can use Math.pow function but here 
+     //for loop can also be used.
+     for(int i = 1; i <= count; i++){
+         
+         if(i <= k){
+             div *= 10;
+         }
+         else{
+             mul *= 10;
+         }
+     }
+     int quo = n/div;
+     int rem = n%div;
+     n = rem*mul + quo;
+     System.out.println(n);
+    }
+   }
