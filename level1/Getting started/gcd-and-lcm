@@ -1,0 +1,22 @@
+import java.util.*;
+    
+    public class Main{
+    
+    public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      int n1 = sc.nextInt();
+      int n2 = sc.nextInt();
+      int productOfN1N2 = n1 * n2;
+      int GCD = 1;
+      int LCM = 1;
+      while(n1%n2 != 0){
+          int rem = n1%n2;
+          n1 = n2;
+          n2 = rem;
+      }
+      GCD = n2;
+      LCM = productOfN1N2/GCD;
+      System.out.println(GCD);
+      System.out.println(LCM);
+     }
+    }
