@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+        int colSize = n;
+        
+        for(int row = 1; row <= n; row++){
+            
+            for(int col = 1; col <= colSize; col++){
+                
+                if(col == colSize){
+                    System.out.print("*"); 
+                    colSize--;
+                }
+                else{
+                    System.out.print("\t");
+                }
+            }
+            
+            System.out.println();
+        }
+    }
+}
