@@ -3,7 +3,7 @@ public class Main{
     public static void main(String[] args){
         Scanner scn = new Scanner(System.in);
 
-        // use nCr = nC(n-k)
+        // use nCr+1 = (nCr * (n-r)) / r + 1
         
         int n = scn.nextInt();
         
