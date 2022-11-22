@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+
+    int n = scn.nextInt();
+    int spaces = 2*n - 3;
+    int digit = 1;
+    
+    for(int row = 1; row <= n; row++){
+        
+        for(int col1 = 1; col1 <= digit; col1++){
+            
+            System.out.print(col1 + "\t");
+        }
+        
+        for(int sp = 1; sp <= spaces; sp++){
+            
+            System.out.print("\t");
+        }
+        
+        if(row == n){
+            
+            digit--;
+        }
+        
+        for(int col2 = digit; col2 >= 1; col2--){
+            
+            System.out.print(col2 + "\t");
+        }
+        
+        spaces -= 2;
+        digit++;
+        System.out.println();
+    }
+ }
+}
