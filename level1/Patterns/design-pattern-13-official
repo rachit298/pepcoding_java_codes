@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+        
+        for(int row = 0; row < n; row++){
+            
+            int rCc = 1;
+            
+            for(int col = 0; col <= row; col++){
+                
+                System.out.print(rCc + "\t");
+                int rCcp1 = (rCc * (row - col)) / (col + 1);
+                rCc = rCcp1;
+            }
+            
+            System.out.println();
+        }
+    }
+}
