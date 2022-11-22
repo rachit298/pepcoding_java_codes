@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+        int spaces = n/2, num = 1, colLimit = 1;
+        
+        for(int row = 1; row <= n; row++){
+            
+            for(int sp = 1; sp <= spaces; sp++){
+                
+                System.out.print("\t");
+            }
+            
+            int cval = num;
+            
+            for(int col = 1; col <= colLimit; col++){
+                
+                System.out.print(cval + "\t");
+                
+                if(col <= colLimit/2){
+                    
+                    cval++;
+                }
+                else{
+                    
+                    cval--;
+                }
+            }
+            
+            if(row <= n/2){
+                
+                spaces--;
+                colLimit += 2;
+                num++;
+            }
+            else{
+                
+                spaces++;
+                colLimit -= 2;
+                num--;
+            }
+            
+            System.out.println();
+        }   
+    }
+}
