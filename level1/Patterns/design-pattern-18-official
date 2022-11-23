@@ -1,0 +1,55 @@
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+
+    int n = scn.nextInt();
+    int os = 0; //outer space
+    int is = n - 2; //inner space
+    int st = 1;
+    
+    for(int row = 1; row <= n; row++){
+        
+        for(int outerSpace = 1; outerSpace <= os; outerSpace++){
+            
+            System.out.print("\t");
+        }
+        
+        for(int stars = 1; stars <= st; stars++){
+            
+            System.out.print("*\t");
+        }
+        
+        for(int innerSpace = 1; innerSpace <= is; innerSpace++){
+            
+            if(row == 1 | row > n/2 + 1){
+                System.out.print("*\t");
+            }
+            else{
+                System.out.print("\t");
+            }
+        }
+        
+        if(row != n/2 + 1){
+            
+            for(int stars = 1; stars <= st; stars++){
+            
+                System.out.print("*\t");
+            }
+        }
+        
+        if(row <= n/2){
+            is -= 2;
+            os++;
+        }
+        else{
+            is += 2;
+            os--;
+        }
+        
+        System.out.println();
+    }
+ }
+}
