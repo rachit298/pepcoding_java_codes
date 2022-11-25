@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    
+    Scanner sc = new Scanner (System.in);
+    
+    int n = sc.nextInt();
+    
+    int[] arr = new int[n];
+    
+    int max = 0;
+    
+    for(int pos = 0; pos < arr.length; pos++){
+        
+        arr[pos] = sc.nextInt();
+        
+        if(max < arr[pos]){
+            max = arr[pos];
+        }
+    }
+    
+    int rows = max;
+    
+    for(int row = 0; row < rows; row++){
+        
+        for(int col = 0; col < arr.length; col++){
+            
+            if(arr[col] >= max){
+                System.out.print("*\t");
+            }
+            else{
+                System.out.print("\t");
+            }
+        }
+        max--;
+        System.out.println();
+    }
+ }
+
+}
