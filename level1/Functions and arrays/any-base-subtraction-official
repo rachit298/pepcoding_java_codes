@@ -1,0 +1,45 @@
+import java.util.*;
+  
+  public class Main{
+  
+  public static void main(String[] args) {
+      Scanner scn = new Scanner(System.in);
+      int b = scn.nextInt();
+      int n1 = scn.nextInt();
+      int n2 = scn.nextInt();
+  
+      int d = getDifference(b, n1, n2);
+      System.out.println(d);
+   }
+  
+   public static int getDifference(int b, int n1, int n2){
+       
+       int diff = 0, carry = 0, power = 1, res = 0;
+       
+       while(n2 > 0){
+           
+           int rem1 = n1%10;
+           int rem2 = n2%10;
+           
+           rem2 += carry;
+           
+           if(rem2 >= rem1){
+               diff = rem2 - rem1;
+               carry = 0;
+           }
+           else{
+               diff = rem2 + b - rem1;
+               carry = -1;
+           }
+           
+           res += diff*power;
+           
+            n1 /= 10;
+            n2 /= 10;
+            power *= 10;
+       }
+       
+       return res;
+   }
+  
+  }
