@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    
+    int[] arr = new int[n];
+    
+    for(int i = 0; i < n; i++){
+        
+        arr[i] = sc.nextInt();
+    }
+    
+    int maxRows = arr[0];
+    
+    for(int i = 0; i < n; i++){
+        
+        if(maxRows < arr[i]){
+            maxRows = arr[i];
+        }
+    }
+    
+    // for(int row = 1; row <= rows; row++){
+        
+    //     for(int col = 0; col < n; col++){
+            
+    //         if(arr[col] >= 1 && arr[col] <= rows){
+    //             System.out.print("*\t");
+    //             arr[col]--;
+    //         }
+    //         else{
+    //             System.out.print("\t");
+    //         }
+    //     }
+    //     System.out.println();
+    // }
+    
+    for(int i = 0; i < maxRows; i++){
+        for(int col = 0; col < n; col++){
+            
+            if(i < arr[col]){
+                System.out.print("*\t");
+            }
+            else{
+                System.out.print("\t");
+            }
+        }
+        System.out.println();
+    }
+  }
+}
