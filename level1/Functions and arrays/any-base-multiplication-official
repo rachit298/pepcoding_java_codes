@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int b = scn.nextInt();
+    int n1 = scn.nextInt();
+    int n2 = scn.nextInt();
+
+    int d = getProduct(b, n1, n2);
+    System.out.println(d);
+ }
+
+ public static int getProduct(int b, int n1, int n2){
+     
+    int carry = 0, power1 = 1, res = 0, res1 = 0, power2 = 1;
+    
+    while(n2 > 0){
+        
+        int temp1 = n1;
+        int div2 = n2%10;
+        n2 /= 10;
+        
+        while(temp1 > 0 || carry > 0){
+            
+            int divi1 = temp1%10;
+            temp1 /= 10;
+            
+            int val = divi1*div2 + carry;
+            
+            res += ((val%b) * power1);
+            carry = val/b;
+            power1 *= 10;
+        }
+        res1 = getSum(b, res1, res*power2);
+        power2 *= 10;
+        power1 = 1;
+        res = 0;
+    }
+    
+    return res1;
+ }
+    public static int getSum(int b, int n1, int n2){
+        
+        int carry = 0;
+        int power = 1;
+        int res = 0;
+        
+        while(n1 > 0 || n2 > 0 || carry > 0){
+            
+            int rem1 = n1%10;
+            int rem2 = n2%10;
+            int sum = carry + rem1 + rem2;
+            
+            n1 /= 10;
+            n2 /= 10;
+            
+            carry = sum / b;
+            sum = sum % b; 
+            
+            res += sum*power;
+            power *= 10;
+        }
+        
+        return res;
+   }
+}
