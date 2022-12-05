@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m = sc.nextInt();
+    
+    int[][] arr = new int[n][m];
+    
+    for(int[] i : arr){
+        for(int j = 0; j < i.length; j++){
+            
+            i[j] = sc.nextInt();
+        }
+    }
+    
+    for(int[] i : arr){
+        for(int j : i){
+            
+            System.out.print(j + " ");
+        }
+        System.out.println();
+    }
+ }
+}
