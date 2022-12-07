@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    
+    int[][] arr = new int[n][n];
+    
+    for(int[] row : arr){
+        for(int col = 0; col < row.length; col++){
+            
+            row[col] = sc.nextInt();
+        }
+    }
+    
+    int row = 0, col = 0;
+    
+    while(row < n){
+        
+        int tempRow = row;
+        int tempCol = col;
+        
+        while(tempCol < n){
+            
+            System.out.println(arr[tempRow][tempCol]);
+            tempRow++;
+            tempCol++;
+        }
+        
+        if(col == n-1){
+            break;
+        }
+        else{
+            col++;
+        }
+    }
+  }
+
+}
