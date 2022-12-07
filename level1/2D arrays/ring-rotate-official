@@ -1,0 +1,101 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        
+        int[][] arr = new int[n][m];
+        
+        for(int row = 0; row < arr.length; row++){
+            for(int col = 0; col < arr[0].length; col++){
+                arr[row][col] = sc.nextInt();
+            }
+        }
+        
+        int s = sc.nextInt();
+        int r = sc.nextInt();
+        
+        int minRow = s-1;
+        int minCol = s-1;
+        int maxRow = n-s;
+        int maxCol = m-s;
+        int sz = 2 * (maxRow - minRow + maxCol - minCol);
+        
+        int[] mat = new int[sz];
+        
+        int index = 0;
+        
+        for(int row = minRow, col = minCol; row <= maxRow; row++){
+            mat[index] = arr[row][col];
+            index++;
+        }
+        for(int col = minCol+1, row = maxRow; col <= maxCol; col++){
+            mat[index] = arr[row][col];
+            index++;
+        }
+        for(int row = maxRow-1, col = maxCol; row >= minRow; row--){
+            mat[index] = arr[row][col];
+            index++;
+        }
+        for(int col = maxCol-1, row = minRow; col >= minCol+1; col--){
+            mat[index] = arr[row][col];
+            index++;
+        }
+        
+        r = r%mat.length;
+        
+        if(r < 0){
+            r += mat.length;
+        }
+        
+        swap(mat, 0, mat.length-r-1);
+        swap(mat, mat.length-r, mat.length-1);
+        swap(mat, 0, mat.length-1);
+        
+        index = 0;
+        
+        for(int row = minRow, col = minCol; row <= maxRow; row++){
+            arr[row][col] = mat[index];
+            index++;
+        }
+        for(int col = minCol+1, row = maxRow; col <= maxCol; col++){
+            arr[row][col] = mat[index];
+            index++;
+        }
+        for(int row = maxRow-1, col = maxCol; row >= minRow; row--){
+            arr[row][col] = mat[index];
+            index++;
+        }
+        for(int col = maxCol-1, row = minRow; col >= minCol+1; col--){
+            arr[row][col] = mat[index];
+            index++;
+        }
+        
+        display(arr);
+    }
+    
+    public static void swap(int arr[], int low, int high){
+	    
+	    while(low <= high){
+	        
+	        arr[low] += arr[high] - (arr[high] = arr[low]);
+	        low++;
+	        high--;
+	    }
+	}
+
+    public static void display(int[][] arr){
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 0; j < arr[0].length; j++){
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+}
