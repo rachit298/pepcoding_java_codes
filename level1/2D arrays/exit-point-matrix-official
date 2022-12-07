@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        
+        int[][] arr = new int[n][m];
+        
+        for(int[] row : arr){
+            for(int col = 0; col < row.length; col++){
+                
+                row[col] = sc.nextInt();
+            }
+        }
+        
+        int row = 0, col = 0;
+        int direction = 0;
+        
+        while(true){
+            
+            direction = (direction + arr[row][col])%4;
+            
+            if(direction == 0){ //East side
+                col++;
+            }
+            else if(direction == 1){ //South side
+                row++;
+            }
+            else if(direction == 2){ //West side
+                col--;
+            }
+            else if(direction == 3){ //North side
+                row--;
+            }
+            
+            if(row < 0){
+                row++;
+                break;
+            }
+            else if(col < 0){
+                col++;
+                break;
+            }
+            else if(row == n){
+                row--;
+                break;
+            }
+            else if(col == m){
+                col--;
+                break;
+            }
+        }
+        System.out.print(row + "\n" + col);
+    }
+}
