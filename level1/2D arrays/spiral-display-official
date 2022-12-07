@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int m =  sc.nextInt();
+    
+    int[][] matrix = new int[n][m];
+    for(int[] row : matrix){
+        for(int col = 0; col < row.length; col++){
+            row[col] = sc.nextInt();
+        }
+    }
+    
+    int rowStart = 0, colStart = 0, rowEnd = n - 1, colEnd = m - 1;
+
+    int totalNumbers = n * m;
+    int count = 0;
+
+    while (count < totalNumbers) {
+
+      for (int col = colStart, row = rowStart; row <= rowEnd && count < totalNumbers; row++) {
+
+        System.out.println(matrix[row][col]);
+        count++;
+      }
+
+      colStart++;
+
+      for (int col = colStart, row = rowEnd; col <= colEnd && count < totalNumbers; col++) {
+
+        System.out.println(matrix[row][col]);
+        count++;
+      }
+
+      rowEnd--;
+
+      for (int col = colEnd, row = rowEnd; row >= rowStart && count < totalNumbers; row--) {
+
+        System.out.println(matrix[row][col]);
+        count++;
+      }
+
+      colEnd--;
+
+      for (int col = colEnd, row = rowStart; col >= colStart && count < totalNumbers; col--) {
+
+        System.out.println(matrix[row][col]);
+        count++;
+      }
+
+      rowStart++;
+    }
+  }
+
+}
