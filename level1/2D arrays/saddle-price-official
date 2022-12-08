@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+
+    int[][] arr = new int[n][n];
+
+    for (int[] row : arr) {
+      for (int col = 0; col < row.length; col++) {
+        row[col] = sc.nextInt();
+      }
+    }
+
+    for (int row = 0; row < n; row++) {
+
+      int minValueCol = 0;
+
+      for (int col = 1; col < n; col++) {
+
+        if (arr[row][col] < arr[row][minValueCol]) {
+
+          minValueCol = col;
+        }
+      }
+
+        boolean flag = true;
+        
+      for (int maxValueRow = 0; maxValueRow < n; maxValueRow++) {
+
+        if (arr[maxValueRow][minValueCol] > arr[row][minValueCol]) {
+            
+            flag = false;
+          break;
+        }
+      }
+      
+      if(flag == true){
+          
+          System.out.println(arr[row][minValueCol]);
+          return;
+      }
+    }
+    
+    System.out.println("Invalid input");
+  }
+}
