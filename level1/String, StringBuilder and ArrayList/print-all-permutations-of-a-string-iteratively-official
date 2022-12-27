@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void solution(String str){
+		
+		int permutations = 1;
+		for(int initial = 2; initial <= str.length(); initial++){
+		    
+		    permutations *= initial;
+		}
+		
+		for(int number = 0; number < permutations; number++){
+		    
+		    StringBuilder sb = new StringBuilder(str);
+		    int temp = number;
+		    int divisor = str.length();
+		    
+		    while(divisor > 0){
+		        
+		        int rem = temp%divisor;
+		        temp /= divisor;
+		        divisor--;
+		        
+		        System.out.print(sb.charAt(rem));
+		        sb.deleteCharAt(rem);
+		    }
+		    System.out.println();
+		}
+	}
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		String str = scn.next();
+		solution(str);
+	}
+}
