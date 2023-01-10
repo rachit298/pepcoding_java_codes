@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        
+        for(int index = 0; index < arr.length; index++){
+            arr[index] = sc.nextInt();
+        }
+        int max = maxOfArray(arr, 0);
+        System.out.println(max);
+    }
+
+    public static int maxOfArray(int[] arr, int idx){
+        
+        if(idx == arr.length) return 0;
+        
+        int max = maxOfArray(arr, idx+1);
+        if(arr[idx] > max){
+            max = arr[idx];
+        }
+        return max;
+    }
+
+}
