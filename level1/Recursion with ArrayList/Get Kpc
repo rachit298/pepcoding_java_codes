@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		ArrayList<String> al = getKPC(str);
+		System.out.println(al);
+	}
+
+	static String[] arr = { ".;", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz" };
+
+	public static ArrayList<String> getKPC(String str) {
+
+		if (str.length() == 1) {
+
+			ArrayList<String> a = new ArrayList<>();
+
+			// take out one character
+			char ch = str.charAt(0);
+
+			// convert it into number
+			int index = ch - '0';
+
+			// find string using that index
+			String s = arr[index];
+
+			for (int i = 0; i < s.length(); i++) {
+
+				// add all characters in new arraylist one by one
+				a.add("" + s.charAt(i));
+			}
+			return a;
+		}
+
+		// take out one character
+		char ch1 = str.charAt(0);
+
+		// take out substring from 1 to end
+		String sub = str.substring(1);
+
+		// catch arraylist
+		ArrayList<String> al = getKPC(sub);
+
+		// make new arraylist to add all strings in it
+		// direct changes in 'al' arraylist is not possible
+		ArrayList<String> res = new ArrayList<>();
+
+		// convert it into number
+		int index1 = ch1 - '0';
+
+		// find string using that index
+		String s1 = arr[index1];
+
+		// loop over 's1' and add each of its character in 'res'
+		// one by one.
+		for (int i = 0; i < s1.length(); i++) {
+
+			// take one character at a time
+			char c = s1.charAt(i);
+
+			// loop over 'al' to get Strings from it
+			// add 'c' and 'al' Strings in 'res'
+			for (int in = 0; in < al.size(); in++) {
+				res.add(c + al.get(in));
+			}
+		}
+		return res;
+	}
+
+}
