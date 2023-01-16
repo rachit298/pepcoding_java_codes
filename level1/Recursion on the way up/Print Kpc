@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    printKPC(str, "");
+  }
+  static String[] arr = { ".;", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz" };
+  public static void printKPC(String str, String asf) {
+
+    if (str.length() == 0) {
+      System.out.println(asf);
+      return;
+    }
+    char ch1 = str.charAt(0);
+    String sub = str.substring(1);
+    String s = arr[ch1 - '0'];
+
+    for (int index = 0; index < s.length(); index++) {
+
+      char option = s.charAt(index);
+      printKPC(sub, asf + option);
+    }
+  }
+
+}
