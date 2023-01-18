@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    printPermutations(str, "");
+  }
+
+  public static void printPermutations(String str, String asf) {
+
+    if(str.length() == 0){
+        System.out.println(asf);
+        return;
+    }
+    
+    for(int index = 0; index < str.length(); index++){
+        char ch = str.charAt(index);
+        String s1 = str.substring(0, index);
+        String s2 = str.substring(index+1);
+        String newString = s1 + s2;
+        printPermutations(newString, asf + ch);
+    }
+  }
+  
+}
