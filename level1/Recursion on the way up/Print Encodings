@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    if ('0' == str.charAt(0)) {
+      System.out.println("Invalid input. A string starting with 0 will not be passed.");
+      return;
+    }
+
+    printEncodings(str, "");
+  }
+
+  public static void printEncodings(String str, String asf) {
+
+    if (str.length() == 0) {
+      System.out.println(asf);
+      return;
+    }
+    else if (str.length() == 1) {
+
+      char ch = str.charAt(0);
+
+      if (ch == '0') {
+        return;
+      }
+      else {
+        int value = 96 + ch - '0';
+        char cValue = (char)value;
+        System.out.println(asf + cValue);
+      }
+    }
+    else {
+
+      char ch = str.charAt(0);
+      String sub = str.substring(1);
+
+      if (ch == '0') {
+        return;
+      }
+      else {
+        int value = 96 + ch - '0';
+        char cValue = (char)value;
+        printEncodings(sub, asf + cValue);
+      }
+
+      String ss = str.substring(0, 2);
+      String restss = str.substring(2);
+
+      int value = Integer.parseInt(ss);
+
+      if (value <= 26) {
+
+        char charValue = (char)(96 + value);
+        printEncodings(restss, asf + charValue);
+      }
+    }
+  }
+}
