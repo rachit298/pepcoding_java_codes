@@ -1,0 +1,165 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] chess = new int[n][n];
+        printNQueens(chess, "", 0);
+    }
+
+    public static void printNQueens(int[][] chess, String qsf, int row) {
+        
+        if(row == chess.length){
+            System.out.println(qsf + ".");
+            return;
+        }
+        
+        // iterate through columns to get different possible positions of queen
+        for(int col = 0, r = row; col < chess[0].length; col++){
+            
+            // check for other queens in every direction a queen can move from current position
+            if(isTopSafe(r, col, chess) && isBottomSafe(r, col, chess) && isLeftSafe(r, col, chess) && isRightSafe(r, col, chess) && isTopLeftDiagSafe(r, col, chess) && isTopRightDiagSafe(r, col, chess) && isBottomLeftDiagSafe(r, col, chess) && isBottomRightDiagSafe(r, col, chess)){
+                
+                // keep queen on current position
+                chess[r][col] = 1;
+                
+                // check for other queen's positions on next row
+                printNQueens(chess, qsf + r + "-" + col + ", ", row+1);
+                
+                // clear current position to get next possible arrangement of queens
+                chess[r][col] = 0;
+            }
+        }
+    }
+    
+    public static boolean isTopSafe(int row, int col, int[][] chess){
+        
+        row--;
+        boolean flag = true;
+        
+        while(row >= 0){
+            if(chess[row][col] == 1){
+                flag = false;
+                break;
+            }
+            row--;
+        }
+        return flag;
+    }
+    
+    public static boolean isBottomSafe(int row, int col, int[][] chess){
+        
+        row++;
+        boolean flag = true;
+        
+        while(row < chess.length){
+            if(chess[row][col] == 1){
+                flag = false;
+                break;
+            }
+            row++;
+        }
+        return flag;
+    }
+    
+    public static boolean isRightSafe(int row, int col, int[][] chess){
+        
+        col++;
+        boolean flag = true;
+        
+        while(col < chess[0].length){
+            if(chess[row][col] == 1){
+                flag = false;
+                break;
+            }
+            col++;
+        }
+        return flag;
+    }
+    
+    public static boolean isLeftSafe(int row, int col, int[][] chess){
+        
+        col--;
+        boolean flag = true;
+        
+        while(col >= 0){
+            if(chess[row][col] == 1){
+                flag = false;
+                break;
+            }
+            col--;
+        }
+        return flag;
+    }
+    
+    public static boolean isTopLeftDiagSafe(int row, int col, int[][] chess){
+        
+        col--;
+        row--;
+        boolean flag = true;
+        
+        while(col >= 0 && row >= 0){
+            if(chess[row][col] == 1){
+                flag = false;
+                break;
+            }
+            col--;
+            row--;
+        }
+        return flag;
+    }
+    
+    public static boolean isTopRightDiagSafe(int row, int col, int[][] chess){
+        
+        col++;
+        row--;
+        boolean flag = true;
+        
+        while(col < chess[0].length && row >= 0){
+            if(chess[row][col] == 1){
+                flag = false;
+                break;
+            }
+            col++;
+            row--;
+        }
+        return flag;
+    }
+    
+    public static boolean isBottomLeftDiagSafe(int row, int col, int[][] chess){
+        
+        col--;
+        row++;
+        boolean flag = true;
+        
+        while(col >= 0 && row < chess.length){
+            if(chess[row][col] == 1){
+                flag = false;
+                break;
+            }
+            col--;
+            row++;
+        }
+        return flag;
+    }
+    
+    public static boolean isBottomRightDiagSafe(int row, int col, int[][] chess){
+        
+        col++;
+        row++;
+        boolean flag = true;
+        
+        while(col < chess[0].length && row < chess.length){
+            if(chess[row][col] == 1){
+                flag = false;
+                break;
+            }
+            col++;
+            row++;
+        }
+        return flag;
+    }
+}
