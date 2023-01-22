@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int fib = fibUsingMemoization(n, new int[n + 1]);
+    System.out.println(fib);
+  }
+  
+  public static int fibUsingMemoization(int n, int[] memo){
+      
+      if(n == 0 || n == 1){
+          return n;
+      }
+      
+      //memoization been done here
+      if(memo[n] != 0){
+          return memo[n];
+      }
+      
+      int fib1 = fibUsingMemoization(n - 1, memo);
+      int fib2 = fibUsingMemoization(n - 2, memo);
+      
+      int fib = fib1 + fib2;
+      
+      memo[n] = fib;
+      return fib;
+  }
+
+}
