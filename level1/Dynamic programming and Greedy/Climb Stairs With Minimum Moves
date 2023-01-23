@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+
+    int[] steps = new int[n];
+    for (int pos = 0; pos < n; pos++) {
+      steps[pos] = sc.nextInt();
+    }
+
+    Integer[] dp = new Integer[n + 1];
+
+    dp[n] = 0;
+
+    for (int pos = n - 1; pos >= 0; pos--) {
+
+      if (steps[pos] > 0) {
+
+        int min = Integer.MAX_VALUE;
+
+        for (int position = 1; position <= steps[pos] && pos + position < dp.length; position++) {
+
+          if (dp[pos + position] != null) {
+            min = Math.min(min, dp[pos + position]);
+          }
+
+        }
+
+        if (min != Integer.MAX_VALUE) {
+
+          dp[pos] = min + 1;
+        }
+
+      }
+    }
+    System.out.println(dp[0]);
+  }
+
+}
