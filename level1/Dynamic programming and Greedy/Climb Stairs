@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        
+        //int totalPaths = climbStairsMemo(new int[n], n, 0);
+        int totalPaths = climbStairsTab(n);
+        System.out.println(totalPaths);
+    }
+    
+    //using memoization
+    /*
+    public static int climbStairsMemo(int[] arr, int n, int currentPosition){
+        
+        if(currentPosition == n){
+            return 1;
+        }
+        else if(currentPosition > n){
+            return 0;
+        }
+        
+        if(arr[currentPosition] != 0){
+            return arr[currentPosition];
+        }
+        
+        int total = climbStairsMemo(arr, n, currentPosition + 1) + climbStairsMemo(arr, n, currentPosition + 2) + climbStairsMemo(arr, n, currentPosition + 3);
+        
+        arr[currentPosition] = total;
+        
+        return total;
+    }
+    */
+    
+    //using tabulation
+    public static int climbStairsTab(int n){
+        
+        int[] dp = new int[n + 1];
+        
+        dp[n] = 1;
+        
+        for(int position = n-1; position >= 0; position--){
+            
+            if(position == n-1){
+                dp[position] = dp[position + 1];
+            }
+            else if(position == n-2){
+                dp[position] = dp[position + 1] + dp[position + 2];
+            }
+            else{
+                dp[position] = dp[position + 1] + dp[position + 2] + dp[position + 3];
+            }
+        }
+        return dp[0];
+    }
+
+}
