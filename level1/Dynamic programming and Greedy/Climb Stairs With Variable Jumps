@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        
+        int[] arr = new int[n];
+        
+        for(int steps = 0; steps < n; steps++){
+            arr[steps] = sc.nextInt();
+        }
+        
+        int[] dp = new int[n + 1];
+        
+        dp[n] = 1;
+        
+        for(int pos = n-1; pos >= 0; pos--){
+            
+            for(int position = 1; position <= arr[pos] && position + pos < dp.length; position++){
+
+                dp[pos] += dp[pos + position];
+            }
+        }
+        
+        System.out.println(dp[0]);
+    }
+    
+}
