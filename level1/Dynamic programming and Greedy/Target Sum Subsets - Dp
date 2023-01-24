@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+
+    int[] arr = new int[n];
+
+    for (int i = 0; i < arr.length; i++) {
+      arr[i] = sc.nextInt();
+    }
+
+    int tar = sc.nextInt();
+
+    boolean[][] dp = new boolean[n + 1][tar + 1];
+
+    for(int row = 0; row < dp.length; row++){
+        
+        for(int col = 0; col < dp[0].length; col++){
+            
+            if(row == 0 && col == 0){
+                
+                dp[row][col] = true;
+            }
+            else if(row == 0){
+                
+                dp[row][col] = false;
+            }
+            else if(col == 0){
+                
+                dp[row][col] = true;
+            }
+            else{
+                
+                if(dp[row - 1][col] == true){
+                    
+                    dp[row][col] = true;
+                }
+                else{
+                    
+                    int value = arr[row - 1];
+                    
+                    if(col >= value){
+                        
+                        if(dp[row - 1][col - value] == true){
+                            
+                            dp[row][col] = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    System.out.println(dp[dp.length - 1][dp[0].length - 1]);
+  }
+}
