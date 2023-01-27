@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+
+    int[] values = new int[n];
+
+    for (int index = 0; index < values.length; index++) {
+      values[index] = sc.nextInt();
+    }
+
+    int[] weights = new int[n];
+
+    for (int index = 0; index < weights.length; index++) {
+      weights[index] = sc.nextInt();
+    }
+
+    int cap = sc.nextInt();
+
+    int[][] dp = new int[values.length + 1][cap + 1];
+
+    for (int index = 1; index < dp.length; index++) {
+
+      for (int idx = 1; idx < dp[0].length; idx++) {
+
+        if (idx >= weights[index - 1]) {
+
+          int rCap = idx - weights[index - 1];
+
+          dp[index][idx] = Math.max(dp[index - 1][idx], values[index - 1] + dp[index - 1][rCap]);
+        }
+        else {
+
+          dp[index][idx] = dp[index - 1][idx];
+        }
+      }
+    }
+
+    System.out.println(dp[values.length][cap]);
+  }
+}
