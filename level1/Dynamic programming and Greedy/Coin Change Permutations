@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+
+    int[] arr = new int[n];
+    for (int index = 0; index < arr.length; index++) {
+      arr[index] = sc.nextInt();
+    }
+
+    int amt = sc.nextInt();
+
+    int[] dp = new int[amt + 1];
+    dp[0] = 1;
+
+    for (int index = 1; index < dp.length; index++) {
+
+      for (int idx = 0; idx < arr.length; idx++) {
+
+        if (index >= arr[idx]) {
+          dp[index] += dp[index - arr[idx]];
+        }
+
+      }
+    }
+
+    System.out.println(dp[amt]);
+  }
+}
