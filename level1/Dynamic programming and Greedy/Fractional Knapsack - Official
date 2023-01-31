@@ -1,0 +1,76 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+
+    int[] values = new int[n];
+    int[] weights = new int[n];
+
+    for (int index = 0; index < n; index++) {
+      values[index] = sc.nextInt();
+    }
+
+    for (int index = 0; index < n; index++) {
+      weights[index] = sc.nextInt();
+    }
+
+    int cap = sc.nextInt();
+
+    Item[] items = new Item[n];
+
+    for (int index = 0; index < n; index++) {
+      double ratio = (values[index] * 1.0) / weights[index];
+      Item item = new Item(values[index], weights[index], ratio);
+      items[index] = item;
+    }
+
+    Arrays.sort(items);
+
+    double vib = 0;
+    int rc = cap;
+
+    for (int index = n - 1; index >= 0; index--) {
+        
+        if(items[index].weight <= rc){
+            vib += items[index].value;
+            rc -= items[index].weight;
+        }
+        else {
+            vib += items[index].value * ((double)rc / items[index].weight);
+            rc = 0;
+            break;
+        }
+    }
+    
+    System.out.println(vib);
+  }
+
+  public static class Item implements Comparable<Item> {
+
+    int value;
+    int weight;
+    double ratio;
+
+    Item(int value, int weight, double ratio) {
+      this.value = value;
+      this.weight = weight;
+      this.ratio = ratio;
+    }
+    
+    public int compareTo(Item o){
+        if(this.ratio > o.ratio){
+            return 1;
+        }
+        else if(this.ratio < o.ratio){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+    }
+  }
+}
