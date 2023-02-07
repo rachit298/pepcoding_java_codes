@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+
+    Scanner sc = new Scanner(System.in);
+    String str = sc.nextLine();
+
+    Stack<Character> st_char = new Stack<>();
+    for (int index = 0; index < str.length(); index++) {
+      char ch = str.charAt(index);
+
+      if (ch == ')') {
+        if (st_char.peek() == '(') {
+          System.out.println(true);
+          return;
+        }
+        else {
+          while (st_char.size() > 0 && st_char.peek() != '(') {
+            st_char.pop();
+          }
+          st_char.pop(); //pop '(' bracket
+        }
+      }
+      else {
+        st_char.push(ch);
+      }
+    }
+    System.out.println(false);
+  }
+}
