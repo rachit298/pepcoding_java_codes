@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.nextLine();
+
+    Stack<Character> stack = new Stack<>();
+
+    for (int index = 0; index < str.length(); index++) {
+
+      char ch = str.charAt(index);
+
+      if (ch == '(' || ch == '[' || ch == '{') {
+        stack.push(ch);
+      }
+      else if (ch == ')') {
+        boolean flag = removeFromStack(stack, '(');
+        if (flag == false) {
+          System.out.println(false);
+          return;
+        }
+      }
+      else if (ch == ']') {
+        boolean flag = removeFromStack(stack, '[');
+        if (flag == false) {
+          System.out.println(false);
+          return;
+        }
+      }
+      else if (ch == '}') {
+        boolean flag = removeFromStack(stack, '{');
+        if (flag == false) {
+          System.out.println(false);
+          return;
+        }
+      }
+    }
+
+    if (stack.size() == 0) {
+      System.out.println(true);
+    }
+    else {
+      System.out.println(false);
+    }
+  }
+
+  public static boolean removeFromStack(Stack<Character> stack, char ch) {
+    if (stack.size() == 0) {
+      return false;
+    }
+    else if (stack.peek() != ch) {
+      return false;
+    }
+    else {
+      stack.pop();
+      return true;
+    }
+  }
+}
