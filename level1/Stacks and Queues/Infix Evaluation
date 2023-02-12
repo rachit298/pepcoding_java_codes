@@ -1,0 +1,86 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+
+    Stack<Character> operators = new Stack<>();
+    Stack<Integer> nums = new Stack<>();
+
+    for (int index = 0; index < exp.length(); index++) {
+
+      char ch = exp.charAt(index);
+
+      if (ch == '(') {
+        operators.push(ch);
+      }
+      else if (Character.isDigit(ch)) {
+        nums.push(ch - '0');
+      }
+      else if (ch == ')') {
+        while (operators.peek() != '(') {
+
+          char op = operators.pop();
+          int so = nums.pop();
+          int fo = nums.pop();
+
+          int result = calculate(fo, op, so);
+          nums.push(result);
+        }
+
+        operators.pop();
+      }
+      else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+        while (operators.size() > 0 && operators.peek() != '(' && precedence(ch) <= precedence(operators.peek())) {
+
+          char op = operators.pop();
+          int so = nums.pop();
+          int fo = nums.pop();
+
+          int result = calculate(fo, op, so);
+          nums.push(result);
+        }
+        operators.push(ch);
+      }
+    }
+
+    while (operators.size() > 0) {
+      char op = operators.pop();
+      int so = nums.pop();
+      int fo = nums.pop();
+
+      int result = calculate(fo, op, so);
+      nums.push(result);
+    }
+
+    System.out.println(nums.peek());
+  }
+
+  public static int precedence(char operator) {
+    if (operator == '+' || operator == '-') {
+      return 1;
+    }
+    else {
+      return 2;
+    }
+  }
+
+  public static int calculate(int fo, char op, int so) {
+    if (op == '+') {
+      return fo + so;
+    }
+    else if (op == '-') {
+      return fo - so;
+    }
+    else if (op == '*') {
+      return fo * so;
+    }
+    else {
+      return fo / so;
+    }
+  }
+}
