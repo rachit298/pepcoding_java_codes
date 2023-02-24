@@ -12,7 +12,7 @@ public class Main {
         for(int index = 0; index < str.length(); index++){
             
             char ch = str.charAt(index);
-            map.put(ch, map.getOrDefault(ch, 1) + 1);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
         
         char max_freq_char = str.charAt(0);
