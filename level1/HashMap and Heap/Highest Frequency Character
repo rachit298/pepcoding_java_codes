@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        
+        HashMap<Character, Integer> map = new HashMap<>();
+        
+        for(int index = 0; index < str.length(); index++){
+            
+            char ch = str.charAt(index);
+            map.put(ch, map.getOrDefault(ch, 1) + 1);
+        }
+        
+        char max_freq_char = str.charAt(0);
+        
+        for(Character key: map.keySet()){
+            
+            if(map.get(key) > map.get(max_freq_char)){
+                max_freq_char = key;
+            }
+        }
+        
+        System.out.println(max_freq_char);
+    }
+
+}
