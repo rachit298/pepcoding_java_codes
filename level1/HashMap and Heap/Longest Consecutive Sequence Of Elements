@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    Scanner sc = new Scanner(System.in);
+
+    HashMap<Integer, Boolean> map = new HashMap<>();
+
+    int n1 = sc.nextInt();
+    int[] a1 = new int[n1];
+
+    for (int index = 0; index < a1.length; index++) {
+      a1[index] = sc.nextInt();
+      map.put(a1[index], true);
+    }
+    
+    for(int index = 0; index < a1.length; index++){
+        if(map.containsKey(a1[index] - 1)){
+            map.put(a1[index], false);
+        }
+    }
+    
+    int msp = 0; // max. starting point
+    int ml = 0; // max. length
+    
+    for(int index = 0; index < a1.length; index++){
+
+        if(map.get(a1[index])){
+            
+            int tl = 1;
+            int tsp = a1[index];
+            
+            while(map.containsKey(tsp + tl)){
+                tl++;
+            }
+            
+            if(tl > ml){
+                ml = tl;
+                msp = tsp;
+            }
+        }
+    }
+    
+    for(int i = 0; i < ml; i++){
+        System.out.println(msp + i);
+    }
+ }
+
+}
